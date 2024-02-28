@@ -44,6 +44,33 @@ pipeline{
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
+        
+        stage('TRIVY FS SCAN') {
+            steps {
+                sh "trivy fs . > trivyfs.txt"
+            }
+        }
+        stage("Docker Build & Push"){
+            steps{
+                script{
+                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
+                       sh "docker build -t amazon ."
+                       sh "docker tag amazon tawfeeq421/tourist:latest "
+                       sh "docker push tawfeeq421/tourist:latest "
+                    }
+                }
+            }
+        }
+        stage("TRIVY"){
+            steps{
+                sh "trivy image tawfeeq421/tourist:latest > trivyimage.txt"
+            }
+        }
+        stage('Deploy to container'){
+            steps{
+                sh 'docker run -d --name amazon -p 3000:3000 tawfeeq421/tourist:latest'
+            }
+        }
        
     }
 }
