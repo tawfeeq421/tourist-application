@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tourist-app-deployment
+  labels:
+    app: tourist-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tourist-app
+  template:
+    metadata:
+      labels:
+        app: tourist-app
+    spec:
+      containers:
+      - name: tourist-app
+        image: tawfeeq421/tourist:latest
+        ports:
+        - containerPort: 3000

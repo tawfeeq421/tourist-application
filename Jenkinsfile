@@ -21,8 +21,8 @@ pipeline{
         stage("Sonarqube Analysis "){
             steps{
                 withSonarQubeEnv('sonar-server') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Amazon \
-                    -Dsonar.projectKey=Amazon '''
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Tourist-app \
+                    -Dsonar.projectKey=Tourist-app '''
                 }
             }
         }
@@ -54,21 +54,32 @@ pipeline{
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
-                       sh "docker build -t amazon ."
-                       sh "docker tag amazon tawfeeq421/tourist:latest "
-                       sh "docker push tawfeeq421/tourist:latest "
+                       sh "docker build -t tourist ."
+                       sh "docker tag tourist tawfeeq421/tourist:v1 "
+                       sh "docker push tawfeeq421/tourist:v1 "
                     }
                 }
             }
         }
-        stage("TRIVY"){
+        stage("TRIVY IMAGE SCAN"){
             steps{
-                sh "trivy image tawfeeq421/tourist:latest > trivyimage.txt"
+                sh "trivy image tawfeeq421/tourist:v1 > trivyimage.txt"
             }
         }
         stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name amazon -p 3000:3000 tawfeeq421/tourist:latest'
+                sh 'docker run -d --name amazon -p 3000:3000 tawfeeq421/tourist:v1'
+            }
+        }
+        stage('Deploy to kubernets'){
+            steps{
+                script{
+                    withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                       sh 'kubectl apply -f deployment.yml'
+                       sh 'kubectl apply -f service.yml'
+                       sh 'kubectl apply -f ingress.yml'
+                  }
+                }
             }
         }
        
