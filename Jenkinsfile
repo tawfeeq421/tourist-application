@@ -15,7 +15,7 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/tawfeeq421/aamazon-app.git'
+                git branch: 'main', url: 'https://github.com/tawfeeq421/tourist-application.git'
             }
         }
         stage("Sonarqube Analysis "){
