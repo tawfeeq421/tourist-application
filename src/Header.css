@@ -1,10 +1,14 @@
-div#box{
-    /* border:1px solid black; */
+   
+
+   
+   div#box{
+    border:1px solid black;
     height: 10vh;
     display: flex;
+    justify-content: space-between;
     background-color:rgb(250, 238, 216) 
     
-}
+  }
 
 
 img{
@@ -15,78 +19,92 @@ img{
     
 }
 
-div#box section{
+div#box section.header{
     
-    width:80%;
+    width:40%;
     display: flex;
     align-items: center;
-    justify-content: end;
     
-
 }
 
-div#location section#sec1 div:nth-child(1){
-    color:rgb(168, 22, 132);
-    font-weight: 600;
+div#box section.header span#span-1{
+    
+    font-size: 15px;
+    color:black;
+    text-transform:capitalize;
+    border-bottom: 0;
     font-family: verdana;
-    font-size: 35px;
 }
 
-div#location section#sec1 div:nth-child(2){
 
-    font-family: verdana;
-    font-size: 17px;
-}
+
+
+
+
 
 div#box section button{
     margin-right:10px;
     height: 35%;
     padding-bottom: 1%;
     font-size: 15px;
-    border: 0;
+    border: 1px solid
 }
 
 
 div div#location{
-    /* border:1px solid green; */
+    
     height: 75vh;
     display: flex;
     background-color:rgb(250, 238, 216)
 }
 
-div#location section#sec1{
-    /* border:1px solid blue; */
-    width: 65%;
-    height: 95%;
-    padding-top:2%
-}
-
-section#sec1 div:nth-child(2){
-    /* border:1px solid green; */
-    font-size: 25px;
-    height: fit-content
+section#sec1{
     
-    
-}
-section#sec1 div{
-    /* border:1px solid rgb(0, 255, 34); */
-    font-size: 40px;
-    padding: 5%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
     
 }
 
 
+.welcome-label{
+    align-self: flex-start;
+    margin-top: 5%;
+    
+   
+}
 
+.label-1{
+    padding: 0 0 0 40px;
+    margin: 0;
+    text-align: left;
+    font-family: Lucida Sans Unicode;
+    font-weight: bold;
+    color: rgb(119, 4, 67);
+    font-size: 38px;
+    font-family: verdana;
+}
 
+mark{
+    color: rgb(248, 106, 130);
+    background: none;
+}
 
-
-
-
+.label-2{
+    width:60%;
+    text-align: left;
+    font-size: 20px;
+    line-height: 1.75rem;
+    padding:0 0 0 40px;
+    font-family: verdana;
+    
+}
 
 
 input::placeholder{
-    font-size: large;
-    padding-left: 15px;
+    font-size: 20px;
+    
     
 }
 
@@ -96,34 +114,17 @@ input[type]{
 
 
 
-
-
-
-
 svg{
-    margin-right: 10%;
+    margin-right: 5%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 div#location section#sec2{
     /* border:1px solid blue; */
-    width: 60%;
+    margin-top: 2%;
+    width: 65%;
     height: 99%;
     display:grid;
     justify-content:space-between;
@@ -227,10 +228,9 @@ div div#btn{
     width: 30%;
     display: flex;
     justify-content:space-evenly;
-
-    margin-left: 35%;
+    margin-left: 38%;
     position: relative;
-    top:-50px;
+    top:-45px;
     
 }
 
@@ -270,6 +270,7 @@ div#btn div#loc:hover{
 div#btn div#loc svg{
     color:rgb(127, 179, 7);
     font-size: 18px;
+    margin-right: 10%;
 }
 
 div#btn button#loc svg:hover{
@@ -282,12 +283,13 @@ div#btn button#loc svg:hover{
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
-    padding:0 !important;
+    padding:2px !important;
     box-shadow: 0px 0px  0px 2px rgb(226, 225, 225);
     background-color: white;
     border-radius: 35px;
-    width: 70%;
-    margin-left: 2%;
+    width: 65%;
+    margin: 5%;
+    
 }
 
 .search-field .input{
@@ -302,11 +304,27 @@ div#btn button#loc svg:hover{
 
 .search-field .search-btn{
     color:rgb(73, 72, 72);
+    
     background-color: rgb(250, 186, 68);
-    min-width: 20%;
     border: 0;
     border-radius: 70px;
-    font-size: 15px; 
-    padding:0.5em;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-right: 2px;
+    text-align: center;
+    width:7em
     
+    
+
+    
+}
+
+.search-field .search-btn span{
+    color: black;
+    font-size: 15px;
+    margin-right:15%;
+    text-transform:capitalize;
+    border-bottom: 0;
 }

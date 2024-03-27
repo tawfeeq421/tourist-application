@@ -1,0 +1,73 @@
+div div#container{
+    
+    height: fit-content;
+    background-color: #8b174e;
+    margin-top: 5%;
+}
+
+div#container div#logosvg{
+    
+    background-color: #8b174e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:2%;
+    padding-bottom: 0;
+
+}
+
+div#logosvg h2#SectionTitle{
+    margin: 2%;
+    color:white;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+div#IconContainer{
+    
+    height: 60%;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+ul{
+    
+    width:20%;
+    height: 80%;
+    text-align: center;
+    list-style-type: none;
+    padding:1%
+    
+
+    
+    
+}
+
+ul div#icon1{
+    
+    border-radius: 50%;
+    width:70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin-left: 35%;
+    
+}
+
+li h3{
+    color:#fcaf1f;
+    font-family:sans-serif;
+    font-size: 20px;
+}
+
+li p{
+    color:white;
+    font-family: sans-serif;
+    font-size: 13px;
+}
+
+

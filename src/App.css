@@ -1,0 +1,23 @@
+/* div#Box{
+    border:1px solid blue
+} */
+
+h2{
+
+    font-size: 22px;
+    font-family: verdana;
+    margin-top: 6%;
+    margin-left: 3%;
+    color: rgb(119, 4, 67);
+    
+
+    
+}
+
+h1{
+    font-size: 18px;
+    line-height: 0em;
+    font-family: verdana;
+    font-weight: 600;
+    margin-left: 3%;
+}

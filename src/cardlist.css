@@ -1,0 +1,9 @@
+div#list{
+    /* border:1px solid black; */
+    height: fit-content;
+    margin-top: 3%;
+    display: flex;
+    padding:1%;
+    overflow:scroll;
+    
+}

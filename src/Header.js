@@ -27,13 +27,18 @@ function Header(){
     
     useEffect(()=>{
          setPlaces([
-            new Place('Nagpur',[
-                                'https://www.nagpuroranges.com/wp-content/uploads/futala-1024x683.jpg',
-                                'https://1.bp.blogspot.com/_0wRJjXvyZ1I/TGhr-W2hWSI/AAAAAAAAFSE/jmfbyN204Ss/s400/MOSQUE1.jpg',
-                                'https://www.godigit.com/content/dam/godigit/directportal/en/contenthm/deekshabhoomi.jpg',
-                                'https://www.citywoofer.com/blog/wp-content/uploads/2021/08/6.jpg',
-                                'https://www.cookwithmanali.com/wp-content/uploads/2016/10/Karachi-Halwa-Bombay-Halwa-150x227.jpg'
-                              ]),
+          
+           new Place('Mumbai',[
+            'https://th.bing.com/th/id/OIP.BlGoXR_8vgAJ4TzIXeJSbQHaJQ?rs=1&pid=ImgDetMain',
+            'https://cdnewmoda.expatwoman.com/s3fs-public/styles/full_width/public/The-Taj.png?itok=_fcXd7w4',
+            'https://farm3.staticflickr.com/2881/8790988938_78f681485c_b.jpg',
+            'https://i0.wp.com/roadlesstravelled.me/wp-content/uploads/2016/12/Crystal-Beach-Resort-2.jpg?fit=683%2C1024&ssl=1',
+            'https://www.holidify.com/images/cmsuploads/compressed/16021403586_64d59f2b7f_b_20200117222907.jpg',
+
+         
+
+          ]),
+
             new Place('Hyderabad',[
                                 'https://www.earthsattractions.com/wp-content/uploads/2018/05/Charminar.jpg',
                                 'https://5.imimg.com/data5/ANDROID/Default/2022/12/YE/BR/IT/34464417/product-jpeg-500x500.jpg',
@@ -42,16 +47,14 @@ function Header(){
                                 'https://cdn.tasteatlas.com/images/dishes/3bd6dfaf53e244dfb7f3ee390447a2f8.jpg?mw=1300'
                               ]),
 
-            new Place('Mumbai',[
-                                   'https://th.bing.com/th/id/OIP.BlGoXR_8vgAJ4TzIXeJSbQHaJQ?rs=1&pid=ImgDetMain',
-                                   'https://cdnewmoda.expatwoman.com/s3fs-public/styles/full_width/public/The-Taj.png?itok=_fcXd7w4',
-                                   'https://farm3.staticflickr.com/2881/8790988938_78f681485c_b.jpg',
-                                   'https://i0.wp.com/roadlesstravelled.me/wp-content/uploads/2016/12/Crystal-Beach-Resort-2.jpg?fit=683%2C1024&ssl=1',
-                                   'https://www.holidify.com/images/cmsuploads/compressed/16021403586_64d59f2b7f_b_20200117222907.jpg',
-
-                                
-            
-                                 ]),
+           
+             new Place('Nagpur',[
+                                'https://www.nagpuroranges.com/wp-content/uploads/futala-1024x683.jpg',
+                                'https://1.bp.blogspot.com/_0wRJjXvyZ1I/TGhr-W2hWSI/AAAAAAAAFSE/jmfbyN204Ss/s400/MOSQUE1.jpg',
+                                'https://www.godigit.com/content/dam/godigit/directportal/en/contenthm/deekshabhoomi.jpg',
+                                'https://www.citywoofer.com/blog/wp-content/uploads/2021/08/6.jpg',
+                                'https://www.cookwithmanali.com/wp-content/uploads/2016/10/Karachi-Halwa-Bombay-Halwa-150x227.jpg'
+                              ]),
 
             new Place('Kolkata',[
                                    'https://www.elginhotels.com/wp-content/uploads/2020/03/howrah_bridge02.png',
@@ -71,11 +74,10 @@ function Header(){
     <div id="box">
             <img src="https://global-uploads.webflow.com/5d98599ba491dd290226f10f/6181f6f0ae433018ad196c5f_withlocals.png"/>
             
-            <section>
-            
-                <span style={{ margin:"2%"}}>Buy a gift Voucher</span>
+            <section className='header'>
+                <span id="span-1">Buy a gift Voucher</span>
                 <button>Log in</button>
-                <button style={{color:"red"}}>Sign up</button>
+                <button>Sign up</button>
             </section>
     </div>
 
@@ -83,19 +85,20 @@ function Header(){
     <div id="location">
 
         <section id="sec1">
-            <div>
-                <span>Enchanting experiences,with incredibale local</span>
-            </div>
 
-            <div>
-                <span>Book unique and memorable travel experiences guided by locals</span>
-            </div>
+    
+                <div class="welcome-label">
+                  <p class="label-1">Enchanting experiences, with <mark>incredible locals</mark>
+                  </p>
+                  <p class="label-2">Book unique and memorable travel experiences guided by locals</p>
+                </div>
+            
             
             
            
 
      <div class='search-field' ref={r1} onClick={()=>open(!searchbox)}>
-             <input  type='text' class='input'  placeholder='Where are you going ?'  onClick={()=>{
+             <input type='text' class='input'  placeholder='Where are you going ?'  onClick={()=>{
                     searchbtn.current.children[1].innerHTML='';
                     searchbtn.current.style.minWidth='fit-content';
                     searchbtn.current.style.padding='10px 20px 10px 20px';

@@ -1,0 +1,128 @@
+div#parent{
+    /* border:1px solid blue; */
+   min-height: 460px;
+   min-width:30%; 
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4%;
+    box-shadow: 0px 0px 2px 2px  rgb(151, 150, 150);
+}
+
+
+
+div#parent section:nth-child(1){
+    /* border:2px solid green; */
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+    align-items: center;
+    flex-grow: 70;
+    background-repeat: no-repeat;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+
+section span{
+    color:white;
+    width: 45%;
+    font-size: 18px;
+    font-weight:bolder;
+    border-bottom:2px solid white;
+    padding-bottom: 4% !important;
+    line-height: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family:sans-serif;
+    
+}
+
+section h3{
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 1%;
+    line-height: 0;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    padding: 0;
+    font-family: verdana;
+}
+
+div#parent section:nth-child(2){
+    /* border:2px solid gold; */
+    flex-grow: 15;
+    background-color: rgb(250, 238, 216);
+    border-radius: 15px;
+
+}
+
+section p{
+    text-align:center;
+    font-size: 18px;
+    line-height: 1.40;
+    padding:5%;
+    color:rgb(90, 88, 88)
+    
+    
+}
+
+div#parent section:nth-child(2) div#roundimg{
+    /* border:1px solid red; */
+    display: flex;
+    justify-content:space-around;
+
+}
+
+div#parent section:nth-child(2) div#roundimg img{
+    border:2px solid white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: white;
+}
+
+div#parent section:nth-child(2) div#roundimg img.secimg{
+    
+    border:2px solid white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin-left: 0;
+    position: relative;
+    left:-8%
+
+}
+
+div#parent section:nth-child(2) div#roundimg span.round3{
+    border:2px solid white;
+    background-color: rgb(89, 102, 38);
+    font-size: 13px;
+    font-weight: bold;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    position: relative;
+    left: -16%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:3%
+
+       
+}
+div#parent section:nth-child(2) div#roundimg button{
+    padding:2%;
+    width:45%;
+    background-color: #88113e;
+    color:white;
+    border: 0;
+    border-radius: 7px;
+    font-size: 15px;
+    margin-right: 2%;
+
+
+}
+
+
