@@ -42,7 +42,17 @@ pipeline {
         }
         stage('Docker Push'){
             steps{
-                withDockerRegistery(credentialsId: 'dockerlogin', toolName: 'docker')
+                withDockerRegistry(credentialsId: 'dockerlogin', toolName: 'docker')
+            }
+        }
+        stage('Deploy to Container'){
+            steps{
+                sh 'docker run -d -p 80:8090 $DOCKER_IMAGE:DOCKER_TAG '
+            }
+        }
+        stage('Remove Unuse Image'){
+            steps{
+                sh 'docker system prune -af'
             }
         }
 
