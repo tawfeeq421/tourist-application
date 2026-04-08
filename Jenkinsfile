@@ -1,23 +1,30 @@
 pipeline {
     agent any
+
     tools {
         jdk 'JDK17'
         nodejs 'NODEJS18'
     }
-    stage('Clean Workspace') {
-        steps {
-            cleanWs()
-           }
-        }
-        stage('Git Checkout'){
-            steps{
-                git branch: 'main',  url: 'https://github.com/tawfeeq421/tourist-application.git'
+
+    stages {
+
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
             }
         }
-        stage('Install Dependency'){
-            steps{
+
+        stage('Git Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/tawfeeq421/tourist-application.git'
+            }
+        }
+
+        stage('Install Dependency') {
+            steps {
                 sh 'npm install'
             }
         }
+
     }
 }
