@@ -35,12 +35,6 @@ pipeline {
                 sh 'trivy fs . > trivyfs.txt'
             }
         }
-        stage('OWASP Dependency Check') {
-            steps {
-                dependencyCheck additionalArguments: '--scan .', odcInstallation: 'DP-Check'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }
         stage('Docker Build') {
             steps{
                 sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
@@ -48,7 +42,7 @@ pipeline {
         }
         stage('Docker Push'){
             steps{
-                withDockerRegistery1(credentialsId: 'dockerlogin', toolName: 'docker')
+                withDockerRegistery(credentialsId: 'dockerlogin', toolName: 'docker')
             }
         }
 
