@@ -15,5 +15,10 @@ pipeline {
                 git branch: 'main' url: 'https://github.com/tawfeeq421/tourist-application.git'
             }
         }
+        stage('Install Dependency'){
+            steps{
+                sh 'npm install'
+            }
+        }
     }
 }
