@@ -4,11 +4,10 @@ pipeline {
         jdk 'JDK17'
         nodejs 'NODEJS18'
     }
-    stages{
-        stage('Clean Workspace'){
-            steps{
-                Cleanws()
-            }
+    stage('Clean Workspace') {
+        steps {
+            cleanWs()
+           }
         }
         stage('Git Checkout'){
             steps{
