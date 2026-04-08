@@ -27,7 +27,13 @@ pipeline {
         }
         stage('Trivy File Scan'){
             steps{
-                sh 'trivy fs .'
+                sh 'trivy fs . > trivyfs.txt'
+            }
+        }
+        stage('OWASP Dependency Check') {
+            steps {
+                dependencyCheck additionalArguments: '--scan .', odcInstallation: 'DP-Check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
 
