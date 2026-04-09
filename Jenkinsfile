@@ -1,60 +1,66 @@
 pipeline {
     agent any
-
-    tools {
+    tools{
         jdk 'JDK17'
         nodejs 'NODEJS18'
     }
-    environment {
+    environment{
         DOCKER_IMAGE = "tawfeeq421/tourist-app"
-        DOCKER_TAG = "${BUILD_NUMBER}"
-
+        DOCKER_TAG = ${BUILD_NUMBER}
     }
-
-    stages {
-
-        stage('Clean Workspace') {
-            steps {
+    stages{
+        stage('Clean Workspace'){
+            steps{
                 cleanWs()
             }
         }
-
-        stage('Git Checkout') {
-            steps {
+        stage('Git Checkout'){
+            steps{
                 git branch: 'main', url: 'https://github.com/tawfeeq421/tourist-application.git'
             }
         }
-
-        stage('Install Dependency') {
-            steps {
+        stage('Dependency Install'){
+            steps{
                 sh 'npm install'
             }
         }
-        stage('Trivy File Scan'){
+        stage('Run Tests'){
             steps{
-                sh 'trivy fs . > trivyfs.txt'
+                sh 'npm test -- --watchAll=false --coverage'
             }
         }
-        stage('Docker Build') {
+        stage('SonarQube Analysis'){
+            environment{
+                scannerHome = tool 'sonar'
+            }
             steps{
-                sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
+                withSonarQubeEnv('sonarserver'){
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
             }
         }
-        stage('Docker Push'){
+        stage('Quality Gate'){
             steps{
-                withDockerRegistry(credentialsId: 'dockerlogin', toolName: 'docker')
+                timeout(time: 1, unit: 'HOURS'){
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
-        stage('Deploy to Container'){
+        stage('Trivy FS Scan'){
             steps{
-                sh 'docker run -d -p 80:8090 $DOCKER_IMAGE:DOCKER_TAG '
+                sh '''
+                trivy fs . \
+                --severity HIGH,CRITICAL \
+                --format table \
+                -o trivy-report.txt
+                '''
             }
         }
-        stage('Remove Unuse Image'){
-            steps{
-                sh 'docker system prune -af'
-            }
-        }
-
+    }
+    post{
+       always{
+            archiveArtifacts artifacts: 'trivy-report.txt', fingerprint: true
+       }
+       
     }
 }
