@@ -6,7 +6,7 @@ pipeline {
     }
     environment{
         DOCKER_IMAGE = "tawfeeq421/tourist-app"
-        DOCKER_TAG = ${BUILD_NUMBER}
+        DOCKER_TAG = "${BUILD_NUMBER}"
     }
     stages{
         stage('Clean Workspace'){
@@ -54,6 +54,21 @@ pipeline {
                 --format table \
                 -o trivy-report.txt
                 '''
+            }
+        }
+        stage('Docker Build & Push'){
+            steps{
+                script{
+                    withDockerRegistry([credentialsId: 'docker-cred']){
+                        sh 'docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .'
+                        sh 'docker push ${DOCKER_IMAGE}:${DOCKER_TAG}'
+                    }
+                }
+            }
+        }
+        stage('Trivy Image Scan'){
+            steps{
+                sh 'trivy image ${DOCKER_IMAGE}:${DOCKER_TAG}'
             }
         }
     }
