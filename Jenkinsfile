@@ -61,6 +61,19 @@ pipeline {
        always{
             archiveArtifacts artifacts: 'trivy-report.txt', fingerprint: true
        }
-       
+       success {
+        slackSend(
+            channel: "#devops",
+            color: 'good',
+            message: "✅ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}\n Report generated."
+        )
+       }
+       failure{
+        slackSend(
+            channel: "#devops",
+            color: 'danger',
+            message: "❌ FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}\nChcek trivy report. \n${env.BUILD_URL}"
+        )
+       }
     }
 }
