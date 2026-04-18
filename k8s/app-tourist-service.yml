@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tourist-service
+  namespace: tourist
+  labels:
+    auther: Tawfeeq
+spec:
+  type: ClusterIP
+  ports:
+    - targetPort: tourist-port
+      port: 80
+      protocol: TCP
+  selector:
+    app: tourist-app
+
