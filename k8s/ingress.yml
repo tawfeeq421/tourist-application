@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  namespace: tourist
+  labels:
+    auther: Tawfeeq
+  annotation:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    mginx.ingress.kubernetes.io/ssl-redirect: "true"
+
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+      - touristapp.com
+      secretName: tourist-tls
+  rules:
+    - host: touristapp.com
+      paths:
+        - path: /
+          pathType: Prefix
+          backens:
+            name: tourist-service
+            port:
+              number: 80
