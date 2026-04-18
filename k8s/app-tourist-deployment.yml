@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tourist-app-deployment
+  namespace: tourist 
+  labels:
+    app: tourist-app 
+    auther: Tawfeeq
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailabel: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: tourist-app
+  template:
+    metadata:
+      labels: 
+        app: tourist-app
+    spec:
+      containers:
+        - name: tourist
+          image: tawfeeq421/tourist-app:11
+          ports:
+            - name: tourist-port
+              containerPort: 80
+          resources:
+            requests:
+              cpu : 150m
+              memory: 120Mi
+            limits:
+              cpu: 250m
+              memory: 240Mi
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          redinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 5
